@@ -18,10 +18,15 @@ namespace AdventOfCode
             }
             else
             {
-                var solution = _puzzle.Solve(data);
-                Console.WriteLine(solution);
+                if(_puzzle.SolvePart1(data, out int part1))
+                {
+                    Console.WriteLine($"Part 1 Solution: {part1}");
+                }
+                if(_puzzle.SolvePart2(data, out int part2))
+                {
+                    Console.WriteLine($"Part 2 Solution: {part2}");
+                }
             }
-
             Console.ReadLine();
         }
     }
