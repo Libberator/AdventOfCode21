@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace AdventOfCode
 {
@@ -15,5 +16,6 @@ namespace AdventOfCode
             
             return File.ReadAllLines(fullPath);
         }
+     
     }
 }
