@@ -1,4 +1,5 @@
 ﻿using System;
+using Utilities;
 
 namespace Puzzles;
 
@@ -9,10 +10,9 @@ public class Program
     public static void Main()
     {
         // select your puzzle here!
-        Puzzle selectedPuzzle = new Puzzle2();
+        PuzzleBase selectedPuzzle = new Puzzle2();
 
         InitializeData(selectedPuzzle);
-
         SolvePuzzles(selectedPuzzle);
 
         Console.ReadKey(true); // Wait before closing console
@@ -27,7 +27,7 @@ public class Program
     {
         try
         {
-            var part1 = puzzle.SolvePart1();
+            int part1 = puzzle.SolvePart1();
             Console.WriteLine($"Part 1 Solution: {part1}");
         }
         catch (NotImplementedException)
@@ -37,7 +37,7 @@ public class Program
 
         try
         {
-            var part2 = puzzle.SolvePart2();
+            int part2 = puzzle.SolvePart2();
             Console.WriteLine($"Part 2 Solution: {part2}");
         }
         catch (NotImplementedException)

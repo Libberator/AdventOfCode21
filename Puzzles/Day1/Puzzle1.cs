@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Puzzles;
 
-public class Puzzle1 : Puzzle<int[]>
+public class Puzzle1 : PuzzleBase<int[]>
 {
     public override int[] Convert(IEnumerable<string> data)
     {

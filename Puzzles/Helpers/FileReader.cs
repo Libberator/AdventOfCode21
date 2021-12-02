@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Puzzles;
+namespace Utilities;
 
-public class FileReader
+public static class FileReader
 {
     private static readonly string _root = @"C:\AdventOfCode\Puzzles";
     private static readonly string _fileName = "input.txt";
 
-    private static string FullPath(string folder)
-    {
-        return Path.Combine(_root, folder, _fileName);
-    }
+    private static string FullPath(string folder) => Path.Combine(_root, folder, _fileName);
 
     public static bool TryReadFile(string folderName, out string[] data)
     {

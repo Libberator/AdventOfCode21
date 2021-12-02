@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Puzzles;
 
-public class Puzzle2 : Puzzle<List<(string, int)>>
+public class Puzzle2 : PuzzleBase<List<(string, int)>>
 {
     private const string Forward = "forward";
     private const string Down = "down";

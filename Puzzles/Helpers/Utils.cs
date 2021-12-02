@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Puzzles;
+namespace Utilities;
 
 public static class Utils
 {
@@ -11,24 +11,4 @@ public static class Utils
     }
 }
 
-/* Wrap whatever method you want to benchmark like:
-using (var watch = new Watch("Time of this method")) 
-{ // Some method } 
-*/
-public sealed class Watch : IDisposable
-{
-    private readonly string _name;
-    private readonly Stopwatch _watch;
-
-    public Watch(string name)
-    {
-        _name = name;
-        _watch = Stopwatch.StartNew();
-    }
-
-    public void Dispose()
-    {
-        _watch.Stop();
-        Console.WriteLine($"{_name}: {_watch.ElapsedMilliseconds}");
-    }
-}
+// this will grow as certain puzzles require it

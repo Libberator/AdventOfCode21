@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
-using Puzzles;
 
-namespace AdventTests;
+namespace Puzzles.Tests;
 
 [TestFixture]
 public class Day2Tests
@@ -12,7 +11,7 @@ public class Day2Tests
     private List<(string, int)> _expectedTestData;
     private int _expectedResult1, _expectedResult2;
 
-    [SetUp]
+    [OneTimeSetUp]
     public void SetUp()
     {
         _p2 = new Puzzle2();
@@ -39,21 +38,21 @@ public class Day2Tests
     }
 
     [Test]
-    public void TestPuzzle2_Convert()
+    public void ConvertTest()
     {
         var result = _p2.Convert(_testData);
         Assert.AreEqual(result, _expectedTestData);
     }
 
     [Test]
-    public void TestPuzzle2_1()
+    public void SolvePart1Test()
     {
         var result = _p2.SolvePart1(_expectedTestData);
         Assert.AreEqual(result, _expectedResult1);
     }
 
     [Test]
-    public void TestPuzzle2_2()
+    public void SolvePart2Test()
     {
         var result = _p2.SolvePart2(_expectedTestData);
         Assert.AreEqual(result, _expectedResult2);
