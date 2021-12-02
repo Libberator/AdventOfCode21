@@ -1,41 +1,43 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AdventOfCode;
 
-public class Puzzle1 : PuzzleBase
+public class Puzzle1 : Puzzle<int[]>
 {
-    public override string FolderName => "Day1";
-
-    public override bool SolvePart1(string[] data, out int solution)
+    public override void Init(IEnumerable<string> data)
     {
-        int[] dataAsInts = data.ConvertToInts();
-        int previousNum = dataAsInts[0];
+        _data = Array.ConvertAll(data.ToArray(), s => int.Parse(s));
+    }
 
-        solution = 0;
+    public override int SolvePart1()
+    {
+        int previousNum = _data[0];
+        int solution = 0;
 
-        for (int i = 1; i < dataAsInts.Length; i++)
+        for (int i = 1; i < _data.Length; i++)
         {
-            int currentNum = dataAsInts[i];
+            int currentNum = _data[i];
             if (currentNum > previousNum)
             {
                 solution++;
             }
             previousNum = currentNum;
         }
-        return true;
+        return solution;
     }
 
-    public override bool SolvePart2(string[] data, out int solution)
+    public override int SolvePart2()
     {
-        int[] dataAsInts = data.ConvertToInts();
-        int[] window = new int[3] { dataAsInts[0], dataAsInts[1], dataAsInts[2] };
+        int[] window = new int[3] { _data[0], _data[1], _data[2] };
         int previousSum = window.Sum();
 
-        solution = 0;
+        int solution = 0;
 
-        for (int i = 3; i < dataAsInts.Length; i++)
+        for (int i = 3; i < _data.Length; i++)
         {
-            window[i % 3] = dataAsInts[i];
+            window[i % 3] = _data[i];
             int currentSum = window.Sum();
             if (currentSum > previousSum)
             {
@@ -43,6 +45,6 @@ public class Puzzle1 : PuzzleBase
             }
             previousSum = currentSum;
         }
-        return true;
+        return solution;
     }
 }

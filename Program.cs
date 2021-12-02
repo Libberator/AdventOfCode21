@@ -2,35 +2,45 @@
 
 namespace AdventOfCode;
 
-class Program
+public class Program
 {
-    public static void Main(string[] args)
+    public static void Main()
     {
         // select your puzzle here!
-        PuzzleBase selectedPuzzle = new Puzzle1();
+        Puzzle selectedPuzzle = new Puzzle2();
 
-        SolvePuzzle(selectedPuzzle);
+        InitializeData(selectedPuzzle);
 
-        //Console.ReadLine(); // Wait before closing console
+        SolvePuzzles(selectedPuzzle);
+
+        Console.ReadKey(true); // Wait before closing console
     }
 
-    private static void SolvePuzzle(PuzzleBase puzzle)
+    private static void InitializeData(IInit puzzle)
     {
-        string folderName = puzzle.FolderName;
-        if(!FileReader.ReadFile(folderName, out string[] data))
+        puzzle.Init(FileReader.ReadFrom("Day2"));
+    }
+
+    private static void SolvePuzzles(ISolver puzzle)
+    {
+        try
         {
-            Console.WriteLine("Failed to Import data!");
-            return;
+            int part1 = puzzle.SolvePart1();
+            Console.WriteLine($"Part 1 Solution: {part1}");
         }
-        
-        if (puzzle.SolvePart1(data, out int part1))
+        catch (NotImplementedException)
         {
-            Console.WriteLine($"{folderName}, Part 1 Solution: {part1}");
+            Console.WriteLine("Part 1 not implemented yet.");
         }
 
-        if (puzzle.SolvePart2(data, out int part2))
+        try
         {
-            Console.WriteLine($"{folderName}, Part 2 Solution: {part2}");
+            int part2 = puzzle.SolvePart2();
+            Console.WriteLine($"Part 2 Solution: {part2}");
+        }
+        catch (NotImplementedException)
+        {
+            Console.WriteLine("Part 2 not implemented yet.");
         }
     }
 }
