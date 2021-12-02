@@ -1,70 +1,68 @@
 using System.Collections.Generic;
 
-namespace AdventOfCode;
+namespace Puzzles;
+
 public class Puzzle2 : Puzzle<List<(string, int)>>
 {
+    private const string Forward = "forward";
+    private const string Down = "down";
+    private const string Up = "up";
     private readonly char _delimiter = ' ';
-    private const string FORWARD = "forward";
-    private const string DOWN = "down";
-    private const string UP = "up";
 
-    public override void Init(IEnumerable<string> data)
+    public override List<(string, int)> Convert(IEnumerable<string> data)
     {
-        _data = new List<(string, int)>();
-        foreach(var s in data)
+        var convertedData = new List<(string, int)>();
+        foreach (var s in data)
         {
             var split = s.Split(_delimiter);
-            _data.Add((split[0], int.Parse(split[1])));
+            convertedData.Add((split[0], int.Parse(split[1])));
         }
+        return convertedData;
     }
 
-    public override int SolvePart1()
+    public override int SolvePart1(List<(string, int)> data)
     {
-        int horiz = 0;
-        int depth = 0;
+        var horiz = 0;
+        var depth = 0;
 
-        foreach(var order in _data)
-        {
+        foreach (var order in data)
             switch (order.Item1)
             {
-                case FORWARD:
+                case Forward:
                     horiz += order.Item2;
                     break;
-                case DOWN:
+                case Down:
                     depth += order.Item2;
                     break;
-                case UP:
+                case Up:
                     depth -= order.Item2;
                     break;
             }
-        }
-     
+
         return horiz * depth;
     }
 
-    public override int SolvePart2()
+    public override int SolvePart2(List<(string, int)> data)
     {
-        int horiz = 0;
-        int depth = 0;
-        int aim = 0;
+        var horiz = 0;
+        var depth = 0;
+        var aim = 0;
 
-        foreach(var order in _data)
-        {
+        foreach (var order in data)
             switch (order.Item1)
             {
-                case FORWARD:
+                case Forward:
                     horiz += order.Item2;
                     depth += aim * order.Item2;
                     break;
-                case DOWN:
+                case Down:
                     aim += order.Item2;
                     break;
-                case UP:
+                case Up:
                     aim -= order.Item2;
                     break;
             }
-        }
-     
+
         return horiz * depth;
     }
 }

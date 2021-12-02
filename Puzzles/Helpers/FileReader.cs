@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace AdventOfCode;
+namespace Puzzles;
 
 public class FileReader
 {
-    private static readonly string _root = @"C:\AdventOfCode";
+    private static readonly string _root = @"C:\AdventOfCode\Puzzles";
     private static readonly string _fileName = "input.txt";
 
-    private static string FullPath(string folder) => Path.Combine(_root, folder, _fileName);
+    private static string FullPath(string folder)
+    {
+        return Path.Combine(_root, folder, _fileName);
+    }
 
     public static bool TryReadFile(string folderName, out string[] data)
     {
-        
         data = Array.Empty<string>();
         string fullPath = FullPath(folderName);
         if (File.Exists(fullPath))
@@ -21,6 +23,7 @@ public class FileReader
             data = File.ReadAllLines(fullPath);
             return true;
         }
+
         return false;
     }
 
@@ -29,9 +32,6 @@ public class FileReader
         var path = FullPath(folder);
         string? line;
         using var reader = File.OpenText(path);
-        while ((line = reader.ReadLine()) != null)
-        {
-            yield return line;
-        }
+        while ((line = reader.ReadLine()) != null) yield return line;
     }
 }

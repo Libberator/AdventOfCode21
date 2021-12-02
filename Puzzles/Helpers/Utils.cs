@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace AdventOfCode;
+namespace Puzzles;
 
 public static class Utils
 {
@@ -17,15 +17,17 @@ using (var watch = new Watch("Time of this method"))
 */
 public sealed class Watch : IDisposable
 {
-    private readonly Stopwatch _watch;
     private readonly string _name;
+    private readonly Stopwatch _watch;
 
-    public Watch(string name) {
+    public Watch(string name)
+    {
         _name = name;
         _watch = Stopwatch.StartNew();
     }
 
-    public void Dispose() {
+    public void Dispose()
+    {
         _watch.Stop();
         Console.WriteLine($"{_name}: {_watch.ElapsedMilliseconds}");
     }
