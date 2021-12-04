@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzles", "Puzzles\Puzzles.csproj", "{5474AE4E-6D99-43A5-83CF-1BB86033AF24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventTests", "AdventTests\AdventTests.csproj", "{26AD7497-76A0-42EC-BF8B-5A2FFE0BB45A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventTests", "PuzzleTests\AdventTests.csproj", "{710F37A6-5665-4DAA-88C6-27B70EFBFD60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +20,9 @@ Global
 		{5474AE4E-6D99-43A5-83CF-1BB86033AF24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5474AE4E-6D99-43A5-83CF-1BB86033AF24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5474AE4E-6D99-43A5-83CF-1BB86033AF24}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26AD7497-76A0-42EC-BF8B-5A2FFE0BB45A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26AD7497-76A0-42EC-BF8B-5A2FFE0BB45A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26AD7497-76A0-42EC-BF8B-5A2FFE0BB45A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26AD7497-76A0-42EC-BF8B-5A2FFE0BB45A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{710F37A6-5665-4DAA-88C6-27B70EFBFD60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{710F37A6-5665-4DAA-88C6-27B70EFBFD60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{710F37A6-5665-4DAA-88C6-27B70EFBFD60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{710F37A6-5665-4DAA-88C6-27B70EFBFD60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

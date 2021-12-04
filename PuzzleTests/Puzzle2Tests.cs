@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using NUnit.Framework;
+using Puzzles;
 
-namespace Puzzles.Tests;
+namespace PuzzleTests;
 
 [TestFixture]
-public class Day2Tests
+public class Puzzle2Tests
 {
     private Puzzle2 _p2;
     private string[] _testData;

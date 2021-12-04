@@ -1,10 +1,11 @@
 using System;
 using NUnit.Framework;
+using Puzzles;
 
-namespace Puzzles.Tests;
+namespace PuzzleTests;
 
 [TestFixture]
-public class Day1Tests
+public class Puzzle1Tests
 {
     private Puzzle1 _p1;
     private int[] _expectedTestData;

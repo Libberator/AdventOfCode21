@@ -29,6 +29,9 @@ public static class FileReader
         var path = FullPath(folder);
         string? line;
         using var reader = File.OpenText(path);
-        while ((line = reader.ReadLine()) != null) yield return line;
+        while (!string.IsNullOrEmpty(line = reader.ReadLine()))
+        {
+            yield return line;
+        }
     }
 }
