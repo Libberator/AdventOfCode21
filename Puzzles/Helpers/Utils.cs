@@ -15,7 +15,23 @@ public static class Utils
     {
         return dict.TryGetValue(key, out V? value) ? value : defVal;
     }
-
 }
+
+public class Watch : IDisposable {
+    private readonly string _text;
+    private readonly Stopwatch _watch;
+
+    public Watch(string text) {
+        _text = text;
+        _watch = Stopwatch.StartNew();
+    }
+    
+    public void Dispose() {
+        _watch.Stop();
+        Console.WriteLine($"{_text}: {_watch.ElapsedMilliseconds}ms");
+    }
+}
+
+
 
 // this will grow as certain puzzles require it

@@ -13,6 +13,11 @@ public class Puzzle4 : PuzzleBase
 
     public override void Init(IEnumerable<string> data)
     {
+        _currentCount = 0;
+        _firstSolutionWasFound =_lastSolutionWasFound = false;
+        NewNumberCalled = delegate {};
+        _allBoards.Clear();
+
         var boardData = new List<string>();
         foreach (var line in data)
         {

@@ -5,44 +5,62 @@ namespace Puzzles;
 
 public class Program
 {
+    // select your puzzle here!
     private const string Folder = "Day4";  // update input.txt folder location
+    private static readonly PuzzleBase SelectedPuzzle = new Puzzle4();
 
     public static void Main()
     {
-        // select your puzzle here!
-        PuzzleBase selectedPuzzle = new Puzzle4();
+        bool benchmark = true;
+        if (benchmark){ Benchmark(true);}
 
-        InitializeData(selectedPuzzle);
-        SolvePuzzles(selectedPuzzle);
+        SelectedPuzzle.Init(FileReader.ReadFrom(Folder));
+
+        Console.WriteLine($"Part 1: {SelectedPuzzle.SolvePart1()}");
+        Console.WriteLine($"Part 2: {SelectedPuzzle.SolvePart2()}");
 
         Console.ReadKey(true); // Wait before closing console
     }
 
-    private static void InitializeData(IInit puzzle)
+    private static void Benchmark(bool requiresInitEveryTime = false)
     {
-        puzzle.Init(FileReader.ReadFrom(Folder));
-    }
+        var iterations = 1000;
 
-    private static void SolvePuzzles(ISolver puzzle)
-    {
-        try
-        {
-            int part1 = puzzle.SolvePart1();
-            Console.WriteLine($"Part 1 Solution: {part1}");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Part 1 failure: {e}");
+        if(requiresInitEveryTime){
+            using (new Watch($"Puzzle 1 x {iterations}")) 
+            {
+                for (int i = 0; i < iterations; i++) 
+                {
+                    SelectedPuzzle.Init(FileReader.ReadFrom(Folder));
+                    SelectedPuzzle.SolvePart1();
+                }
+            }
+
+            using (new Watch($"Puzzle 2 x {iterations}")) {
+                for (int i = 0; i < iterations; i++) {
+                    SelectedPuzzle.Init(FileReader.ReadFrom(Folder));
+                    SelectedPuzzle.SolvePart2();
+                }
+            }
         }
 
-        try
+        else
         {
-            int part2 = puzzle.SolvePart2();
-            Console.WriteLine($"Part 2 Solution: {part2}");
+            SelectedPuzzle.Init(FileReader.ReadFrom(Folder));
+            using (new Watch($"Puzzle 1 x {iterations}")) 
+            {
+                for (int i = 0; i < iterations; i++) 
+                {
+                    SelectedPuzzle.SolvePart1();
+                }
+            }
+
+            using (new Watch($"Puzzle 2 x {iterations}")) {
+                for (int i = 0; i < iterations; i++) {
+                    SelectedPuzzle.SolvePart2();
+                }
+            }
         }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Part 2 failure: {e}");
-        }
+
     }
 }
