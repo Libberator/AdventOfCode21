@@ -29,7 +29,7 @@ public static class FileReader
         var path = FullPath(folder);
         string? line;
         using var reader = File.OpenText(path);
-        while (!string.IsNullOrEmpty(line = reader.ReadLine()))
+        while ((line = reader.ReadLine()) != null)
         {
             yield return line;
         }
