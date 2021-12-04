@@ -7,7 +7,7 @@ namespace PuzzleTests;
 [TestFixture]
 public class AllTests
 {
-
+    // TODO: This is a work in progress to automate tests in the future
     public void BaseTestMethod(PuzzleBase puzzle, int dayNumber, int? expected1, int? expected2 = null)
     {
         var data = TestHelpers.ReadFrom(TestHelpers.FullPath(dayNumber));

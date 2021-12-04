@@ -1,4 +1,3 @@
-using System;
 using NUnit.Framework;
 using Puzzles;
 
@@ -7,9 +6,7 @@ namespace PuzzleTests;
 [TestFixture]
 public class Puzzle3Tests
 {
-    private Puzzle3 _p3;
-    private string[] _testData;
-
+    private readonly PuzzleBase puzzle = new Puzzle3();
     private int _expectedResult1, _expectedResult2;
 
     [OneTimeSetUp]
@@ -17,8 +14,7 @@ public class Puzzle3Tests
     {
         var data = TestHelpers.ReadFrom(TestHelpers.FullPath(3));
 
-        _p3 = new Puzzle3();
-        _p3.Init(data);
+        puzzle.Init(data);
 
         _expectedResult1 = 198;
         
@@ -28,14 +24,14 @@ public class Puzzle3Tests
     [Test]
     public void SolvePart1Test()
     {
-        var result = _p3.SolvePart1();
+        var result = puzzle.SolvePart1();
         Assert.AreEqual(result, _expectedResult1);
     }
 
     [Test]
     public void SolvePart2Test()
     {
-        var result = _p3.SolvePart2();
+        var result = puzzle.SolvePart2();
         Assert.AreEqual(result, _expectedResult2);
     }
 

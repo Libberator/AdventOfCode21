@@ -4,20 +4,21 @@ using Puzzles;
 namespace PuzzleTests;
 
 [TestFixture]
-public class Puzzle1Tests
+public class Puzzle4Tests
 {
-    private readonly PuzzleBase puzzle = new Puzzle1();
+    private readonly PuzzleBase puzzle = new Puzzle4();
     private int _expectedResult1, _expectedResult2;
 
     [OneTimeSetUp]
     public void SetUp()
     {
-        var data = TestHelpers.ReadFrom(TestHelpers.FullPath(1));
+        var data = TestHelpers.ReadFrom(TestHelpers.FullPath(4));
 
         puzzle.Init(data);
 
-        _expectedResult1 = 7;
-        _expectedResult2 = 5;
+        _expectedResult1 = 4512;
+        
+        _expectedResult2 = 1924;
     }
 
     [Test]
@@ -33,4 +34,5 @@ public class Puzzle1Tests
         var result = puzzle.SolvePart2();
         Assert.AreEqual(result, _expectedResult2);
     }
+
 }

@@ -5,12 +5,12 @@ namespace Puzzles;
 
 public class Program
 {
-    private const string Folder = "Day3";  // update input.txt folder location
+    private const string Folder = "Day4";  // update input.txt folder location
 
     public static void Main()
     {
         // select your puzzle here!
-        PuzzleBase selectedPuzzle = new Puzzle3();
+        PuzzleBase selectedPuzzle = new Puzzle4();
 
         InitializeData(selectedPuzzle);
         SolvePuzzles(selectedPuzzle);
