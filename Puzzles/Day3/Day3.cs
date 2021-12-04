@@ -1,18 +1,14 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Puzzles;
 
-public class Puzzle3 : PuzzleBase<List<string>>
+public class Day3 : Puzzle<List<string>>
 {
     private const char One = '1';
     private const char Zero = '0';
 
-    public override List<string> Convert(IEnumerable<string> data)
-    {
-        return data.ToList();
-    }
+    public override List<string> Convert(IEnumerable<string> data) => data.ToList();
 
     public override int SolvePart1(List<string> data)
     {
@@ -56,11 +52,11 @@ public class Puzzle3 : PuzzleBase<List<string>>
             }
         }
 
-        return ConvertToInteger(oxygenRating.First()) * ConvertToInteger(scrubberRating.First());
+        return BinaryStringToInt(oxygenRating.First()) * BinaryStringToInt(scrubberRating.First());
     }
 
 
-    private IEnumerable<string> TakeMore(IEnumerable<string> input, int index)
+    private static IEnumerable<string> TakeMore(IEnumerable<string> input, int index)
     {
         var zeros = input.Where(s => s[index] == Zero);
         var ones = input.Where(s => s[index] == One);
@@ -68,7 +64,7 @@ public class Puzzle3 : PuzzleBase<List<string>>
         return zeros.Count() > ones.Count() ? zeros : ones;  // ties go in favor of ones
     }
 
-    private IEnumerable<string> TakeFewer(IEnumerable<string> input, int index)
+    private static IEnumerable<string> TakeFewer(IEnumerable<string> input, int index)
     {
         var zeros = input.Where(s => s[index] == Zero);
         var ones = input.Where(s => s[index] == One);
@@ -85,8 +81,5 @@ public class Puzzle3 : PuzzleBase<List<string>>
         return count;
     }
 
-    private static int ConvertToInteger(string s)
-    {
-        return System.Convert.ToInt32(s, 2);
-    }
+    private static int BinaryStringToInt(string s) => System.Convert.ToInt32(s, 2);
 }

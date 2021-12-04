@@ -4,13 +4,13 @@ using Puzzles;
 
 namespace PuzzleTests;
 
-[TestFixture]
+
 public class AllTests
 {
     // TODO: This is a work in progress to automate tests in the future
-    public void BaseTestMethod(PuzzleBase puzzle, int dayNumber, int? expected1, int? expected2 = null)
+    public void BaseTestMethod(Puzzle puzzle, int dayNumber, int? expected1, int? expected2 = null)
     {
-        var data = TestHelpers.ReadFrom(TestHelpers.FullPath(dayNumber));
+        var data = TestHelpers.ReadFrom(dayNumber);
         puzzle.Init(data);
 
         var result1 = puzzle.SolvePart1();
@@ -22,7 +22,5 @@ public class AllTests
             Assert.AreEqual(result2, expected2);
         }
     }
-
- 
 
 }

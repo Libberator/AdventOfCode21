@@ -2,14 +2,14 @@
 
 namespace Puzzles;
 
-public abstract class PuzzleBase : IInit, ISolver
+public abstract class Puzzle : IInit, ISolver
 {
     public abstract void Init(IEnumerable<string> data);
     public abstract int SolvePart1();
     public abstract int SolvePart2();
 }
 
-public abstract class PuzzleBase<T> : PuzzleBase, IConverter<T>, ISolver<T>
+public abstract class Puzzle<T> : Puzzle, IConverter<T>, ISolver<T>
 {
     protected T _data;
 

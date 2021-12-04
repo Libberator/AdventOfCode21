@@ -6,15 +6,12 @@ namespace Utilities;
 
 public static class FileReader
 {
-    private static readonly string _root = @"C:\AdventOfCode\Puzzles";
-    private static readonly string _fileName = "input.txt";
+    private static string FullPath(int number) => $"./Puzzles/Day{number}/input.txt";
 
-    private static string FullPath(string folder) => Path.Combine(_root, folder, _fileName);
-
-    public static bool TryReadFile(string folderName, out string[] data)
+    public static bool TryReadFile(int number, out string[] data)
     {
         data = Array.Empty<string>();
-        string fullPath = FullPath(folderName);
+        string fullPath = FullPath(number);
         if (File.Exists(fullPath))
         {
             data = File.ReadAllLines(fullPath);
@@ -24,9 +21,9 @@ public static class FileReader
         return false;
     }
 
-    public static IEnumerable<string> ReadFrom(string folder)
+    public static IEnumerable<string> ReadFrom(int day)
     {
-        var path = FullPath(folder);
+        var path = FullPath(day);
         string? line;
         using var reader = File.OpenText(path);
         while ((line = reader.ReadLine()) != null)

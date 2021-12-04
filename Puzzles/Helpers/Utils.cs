@@ -17,7 +17,7 @@ public static class Utils
     }
 }
 
-public class Watch : IDisposable {
+public sealed class Watch : IDisposable {
     private readonly string _text;
     private readonly Stopwatch _watch;
 
@@ -31,7 +31,3 @@ public class Watch : IDisposable {
         Console.WriteLine($"{_text}: {_watch.ElapsedMilliseconds}ms");
     }
 }
-
-
-
-// this will grow as certain puzzles require it
