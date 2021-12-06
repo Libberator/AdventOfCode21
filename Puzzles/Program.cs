@@ -7,22 +7,19 @@ namespace Puzzles;
 
 public class Program
 {
-    // Select your puzzle here!
-    private static readonly Puzzle SelectedPuzzle = new Day4();
-    // The following number is used to find the folder for "input.txt"
-    private static readonly int Day = 4;
-
     public static void Main()
     {
-        SelectedPuzzle.Init(FileReader.ReadFrom(Day));
-
+        // Adjust your class and path numbers here!
+        Puzzle SelectedPuzzle = new Day6(FileReader.FullPath(6));  
+        
+        SelectedPuzzle.Init();
         Console.WriteLine($"Part 1: {SelectedPuzzle.SolvePart1()}");
-        Console.WriteLine($"Part 2: {SelectedPuzzle.SolvePart2()}");
+        Console.WriteLine($"Part 2: {SelectedPuzzle.SolvePart2(useLong: true)}");
 
 #if BENCHMARK
-        Benchmark(SelectedPuzzle, requiresInitEveryTime: true);
+        Benchmark(SelectedPuzzle, requiresInitEveryTime: false);
 #endif
-        Console.ReadKey(true); // Wait before closing console
+        Console.ReadLine(); // Wait before closing console
     }
 
 
@@ -35,14 +32,14 @@ public class Program
             {
                 for (int i = 0; i < iterations; i++) 
                 {
-                    puzzle.Init(FileReader.ReadFrom(Day));
+                    puzzle.Init();
                     puzzle.SolvePart1();
                 }
             }
 
             using (new Watch($"Puzzle 2 x {iterations}")) {
                 for (int i = 0; i < iterations; i++) {
-                    puzzle.Init(FileReader.ReadFrom(Day));
+                    puzzle.Init();
                     puzzle.SolvePart2();
                 }
             }
@@ -50,7 +47,7 @@ public class Program
 
         else
         {
-            puzzle.Init(FileReader.ReadFrom(Day));
+            puzzle.Init();
             using (new Watch($"Puzzle 1 x {iterations}")) {
                 for (int i = 0; i < iterations; i++) {
                     puzzle.SolvePart1();
@@ -59,7 +56,7 @@ public class Program
 
             using (new Watch($"Puzzle 2 x {iterations}")) {
                 for (int i = 0; i < iterations; i++) {
-                    puzzle.SolvePart2();
+                    puzzle.SolvePart2(true);
                 }
             }
         }

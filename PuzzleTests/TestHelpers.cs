@@ -5,17 +5,8 @@ namespace PuzzleTests;
 
 public static class TestHelpers
 {
-    public static string FullPath(int num) 
+    public static string TestDataPath(int num) 
     { 
         return $"C:/AdventOfCode/PuzzleTests/TestFiles/Test{num}.txt";
-    }
-
-    public static IEnumerable<string> ReadFrom(int day)
-    {
-        string path = FullPath(day);
-
-        string? line;
-        using var reader = File.OpenText(path);
-        while ((line = reader.ReadLine()) != null) yield return line;
     }
 }

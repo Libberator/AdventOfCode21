@@ -6,31 +6,24 @@ namespace PuzzleTests;
 [TestFixture]
 public class Puzzle2Tests
 {
-    private readonly Puzzle puzzle = new Day2();
-    private int _expectedResult1, _expectedResult2;
+    private readonly Puzzle _puzzle = new Day2(TestHelpers.TestDataPath(2));
+    private readonly int _expectedResult1 = 150;
+    private readonly int _expectedResult2 = 900;
 
     [OneTimeSetUp]
-    public void SetUp()
-    {
-        var data = TestHelpers.ReadFrom(2);
-
-        puzzle.Init(data);
-
-        _expectedResult1 = 150;
-        _expectedResult2 = 900;
-    }
+    public void SetUp() => _puzzle.Init();
 
     [Test]
     public void SolvePart1Test()
     {
-        var result = puzzle.SolvePart1();
-        Assert.AreEqual(result, _expectedResult1);
+        var result = _puzzle.SolvePart1();
+        Assert.AreEqual(_expectedResult1, result);
     }
 
     [Test]
     public void SolvePart2Test()
     {
-        var result = puzzle.SolvePart2();
-        Assert.AreEqual(result, _expectedResult2);
+        var result = _puzzle.SolvePart2();
+        Assert.AreEqual(_expectedResult2, result);
     }
 }

@@ -9,7 +9,9 @@ public class Day2 : Puzzle<List<(string, int)>>
     private const string Up = "up";
     private readonly char _delimiter = ' ';
 
-    public override List<(string, int)> Convert(IEnumerable<string> data)
+    public Day2(string path) : base(path) { }
+
+    public override List<(string, int)> ConvertData(IEnumerable<string> data)
     {
         var convertedData = new List<(string, int)>();
         foreach (var s in data)

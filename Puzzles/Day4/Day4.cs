@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Puzzles;
 
@@ -7,19 +8,21 @@ public class Day4 : Puzzle
 {
     private readonly List<Bingo> _allBoards = new();
     public event Action<int> NewNumberCalled = delegate{};
-    private int[] _numbersToDraw;
+    private List<int> _numbersToDraw = new();
     private int _totalBoardsRemaining, _lastUnmarkedSum, _lastNumberCalled;
     private bool _firstBingoWasCalled, _lastBingoWasCalled;
 
-    public override void Init(IEnumerable<string> data)
+    public Day4(string path) : base(path) { }
+
+    public override void Init()
     {
         _allBoards.Clear();
         var boardData = new List<int[]>();
-        foreach (var line in data)
+        foreach (var line in LoadFromFile(_dataPath))
         {
             if (line.Contains(','))
             {
-                _numbersToDraw = Array.ConvertAll(line.Split(','), s => int.Parse(s));
+                _numbersToDraw = line.Split(',').Select(int.Parse).ToList();
             }
             else if (!string.IsNullOrWhiteSpace(line))
             {

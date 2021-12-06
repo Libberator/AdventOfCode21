@@ -8,7 +8,9 @@ public class Day3 : Puzzle<List<string>>
     private const char One = '1';
     private const char Zero = '0';
 
-    public override List<string> Convert(IEnumerable<string> data) => data.ToList();
+    public Day3(string path) : base(path) { }
+
+    public override List<string> ConvertData(IEnumerable<string> data) => data.ToList();
 
     public override int SolvePart1(List<string> data)
     {

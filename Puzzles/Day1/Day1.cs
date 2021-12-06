@@ -6,7 +6,9 @@ namespace Puzzles;
 
 public class Day1 : Puzzle<int[]>
 {
-    public override int[] Convert(IEnumerable<string> data)
+    public Day1(string path) : base(path) { }
+
+    public override int[] ConvertData(IEnumerable<string> data)
     {
         return Array.ConvertAll(data.ToArray(), s => int.Parse(s));
     }
