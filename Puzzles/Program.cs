@@ -35,7 +35,7 @@ public class Program
 
         using (new Watch($"Puzzle 2 x {iterations}")) {
             for (int i = 0; i < iterations; i++) {
-                puzzle.SolvePart2(true);
+                puzzle.SolvePart2(true);  // <- remember to update optional param
             }
         }
     }

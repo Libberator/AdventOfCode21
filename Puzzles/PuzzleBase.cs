@@ -11,6 +11,7 @@ public abstract class Puzzle : IInit, ISolver
     public abstract void Init();
     public abstract int SolvePart1();
     public abstract int SolvePart2();
+    public virtual long SolvePart1(bool useLong) => SolvePart1();
     public virtual long SolvePart2(bool useLong) => SolvePart2();
 }
 
