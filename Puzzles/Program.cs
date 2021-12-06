@@ -14,50 +14,28 @@ public class Program
         
         SelectedPuzzle.Init();
         Console.WriteLine($"Part 1: {SelectedPuzzle.SolvePart1()}");
-        Console.WriteLine($"Part 2: {SelectedPuzzle.SolvePart2(useLong: true)}");
+        Console.WriteLine($"Part 2: {SelectedPuzzle.SolvePart2(useLong: true)}"); // optional param: useLong
 
 #if BENCHMARK
-        Benchmark(SelectedPuzzle, requiresInitEveryTime: false);
+        Benchmark(SelectedPuzzle);
 #endif
         Console.ReadLine(); // Wait before closing console
     }
 
 
-    private static void Benchmark(Puzzle puzzle, bool requiresInitEveryTime = false)
+    private static void Benchmark(Puzzle puzzle)
     {
         var iterations = 1000;
-
-        if(requiresInitEveryTime){
-            using (new Watch($"Puzzle 1 x {iterations}")) 
-            {
-                for (int i = 0; i < iterations; i++) 
-                {
-                    puzzle.Init();
-                    puzzle.SolvePart1();
-                }
-            }
-
-            using (new Watch($"Puzzle 2 x {iterations}")) {
-                for (int i = 0; i < iterations; i++) {
-                    puzzle.Init();
-                    puzzle.SolvePart2();
-                }
+        puzzle.Init();
+        using (new Watch($"Puzzle 1 x {iterations}")) {
+            for (int i = 0; i < iterations; i++) {
+                puzzle.SolvePart1();
             }
         }
 
-        else
-        {
-            puzzle.Init();
-            using (new Watch($"Puzzle 1 x {iterations}")) {
-                for (int i = 0; i < iterations; i++) {
-                    puzzle.SolvePart1();
-                }
-            }
-
-            using (new Watch($"Puzzle 2 x {iterations}")) {
-                for (int i = 0; i < iterations; i++) {
-                    puzzle.SolvePart2(true);
-                }
+        using (new Watch($"Puzzle 2 x {iterations}")) {
+            for (int i = 0; i < iterations; i++) {
+                puzzle.SolvePart2(true);
             }
         }
     }
