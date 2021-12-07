@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Puzzles;
 
-public class Day6 : Puzzle
+public class Day6 : Puzzle<long>
 {
     private readonly Dictionary<int, long> _data = new();
     public Day6(string path) : base(path) 
@@ -15,8 +15,8 @@ public class Day6 : Puzzle
         }
     }
 
-    public override long SolvePart1(bool useLong) => GetTotalAfterNDays(_data, 80);  // 391671
-    public override long SolvePart2(bool useLong) => GetTotalAfterNDays(_data, 256);  // 1754000560399
+    public override long SolvePart1() => GetTotalAfterNDays(_data, 80);  // 391671
+    public override long SolvePart2() => GetTotalAfterNDays(_data, 256);  // 1754000560399
     
     private static long GetTotalAfterNDays(Dictionary<int, long> data, int totalDays)
     {

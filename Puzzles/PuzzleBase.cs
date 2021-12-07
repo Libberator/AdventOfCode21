@@ -3,19 +3,22 @@ using Utilities;
 
 namespace Puzzles;
 
-public abstract class Puzzle : ISolver
+// The generic T is the return type
+public abstract class Puzzle<T> : ISolver<T> where T : struct
 {
     protected readonly string _dataPath;
     public Puzzle(string path) { _dataPath = path; }
     protected virtual IEnumerable<string> LoadFromFile() => FileReader.ReadFrom(_dataPath);
-    public virtual int SolvePart1() => -1;
-    public virtual int SolvePart2() => -1;
-    public virtual long SolvePart1(bool useLong) => -1;
-    public virtual long SolvePart2(bool useLong) => -1;  // created just for Day6
+    public abstract T SolvePart1();
+    public abstract T SolvePart2();
 }
 
-public interface ISolver
+// default int return type
+public abstract class Puzzle : Puzzle<int> { protected Puzzle(string path) : base(path) { } }
+
+
+public interface ISolver<T>
 {
-    public int SolvePart1();
-    public int SolvePart2();
+    public T SolvePart1();
+    public T SolvePart2();
 }

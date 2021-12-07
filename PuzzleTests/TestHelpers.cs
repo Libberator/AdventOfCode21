@@ -7,6 +7,6 @@ public static class TestHelpers
 {
     public static string TestDataPath(int num) 
     { 
-        return $"C:/AdventOfCode/PuzzleTests/TestFiles/Test{num}.txt";
+        return $"C:/AdventOfCode/PuzzleTests/Day{num}Test/Test{num}.txt";
     }
 }
