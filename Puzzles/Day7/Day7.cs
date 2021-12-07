@@ -1,8 +1,6 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
 
 namespace Puzzles;
 
@@ -10,29 +8,29 @@ public class Day7 : Puzzle
 {
     private readonly int[] _data;
 
-    public Day7(string path) : base(path) => _data = Array.ConvertAll(LoadFromFile().ToArray().First().Split(','), int.Parse);
+    public Day7(string path) : base(path) => _data = Array.ConvertAll(LoadFromFile().First().Split(','), int.Parse);
 
     public override int SolvePart1()
     {
         int medianValue = GetMedian(_data);  // median: 342
-        var fuelCost = GetFuelCostAtSpot(_data, medianValue);
+        var fuelCost1 = GetFuelCostAtSpot(_data, medianValue);
 
         if (_data.Length % 2 == 0) {  // there are 2 "medians" if it's even
-            var otherFuelCost = GetFuelCostAtSpot(_data, medianValue - 1);
-            if (otherFuelCost < fuelCost) {
-                return otherFuelCost;
+            var fuelCost2 = GetFuelCostAtSpot(_data, medianValue - 1);
+            if (fuelCost2 < fuelCost1) {
+                return fuelCost2;
             }
         }
-        return fuelCost;  // 325528
+        return fuelCost1;  // 325528
     }
 
     public override int SolvePart2()
     {
         int meanValue = GetMean(_data);
-        var fuelCost = GetFuelCostAtSpot(_data, meanValue, true); // floor
+        var fuelCost1 = GetFuelCostAtSpot(_data, meanValue, true); // floor
         var fuelCost2 = GetFuelCostAtSpot(_data, meanValue+1, true); // ceiling
 
-        return Math.Min(fuelCost, fuelCost2);  // 85015836
+        return Math.Min(fuelCost1, fuelCost2);  // 85015836
     }
 
     private static int GetMedian(int[] data) => data.OrderBy(x => x).ElementAt(data.Length / 2);
