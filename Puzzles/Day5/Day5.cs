@@ -7,31 +7,28 @@ using System.Collections.Concurrent;
 
 namespace Puzzles;
 
-public class Day5 : Puzzle<List<(Vector2 , Vector2)>>
+public class Day5 : Puzzle
 {
+    private readonly List<(Vector2 , Vector2)> _data = new();
     private const string Arrow = " -> ";
     private const char Delimiter = ',';
 
-    public Day5(string path) : base(path) { }
-
-    protected override List<(Vector2, Vector2)> ConvertData(IEnumerable<string> data)
+    public Day5(string path) : base(path) 
     {
-        var result = new List<(Vector2, Vector2)>();
-        foreach (string line in data)
+        foreach (string line in LoadFromFile())
         {
             if (string.IsNullOrWhiteSpace(line)) continue;
             var split = line.Split(Arrow, StringSplitOptions.TrimEntries);
             var from = split[0].Split(Delimiter).Select(int.Parse).ToArray();
             var to = split[1].Split(Delimiter).Select(int.Parse).ToArray();
-            result.Add((new Vector2(from[0], from[1]), new Vector2(to[0], to[1])));
+            _data.Add((new Vector2(from[0], from[1]), new Vector2(to[0], to[1])));
         }
-        return result;
     }
 
-    protected override int SolvePart1(List<(Vector2, Vector2)> data)
+    public override int SolvePart1()
     {
         var spotsHit = new ConcurrentDictionary<Vector2, bool>();
-        Parallel.ForEach(data.Where(pair => pair.Item1.IsLateralTo(pair.Item2)), item =>
+        Parallel.ForEach(_data.Where(pair => pair.Item1.IsLateralTo(pair.Item2)), item =>
         {
             foreach(var point in item.Item1.GetRange(item.Item2))
             {
@@ -42,10 +39,10 @@ public class Day5 : Puzzle<List<(Vector2 , Vector2)>>
         return spotsHit.Count(c => c.Value);  // 6710
     }
 
-    protected override int SolvePart2(List<(Vector2, Vector2)> data)
+    public override int SolvePart2()
     {
         var spotsHit = new ConcurrentDictionary<Vector2, bool>();
-        Parallel.ForEach(data, item =>
+        Parallel.ForEach(_data, item =>
         {
             foreach(var point in item.Item1.GetRange(item.Item2))
             {

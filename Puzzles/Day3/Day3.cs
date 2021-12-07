@@ -3,29 +3,27 @@ using System.Linq;
 
 namespace Puzzles;
 
-public class Day3 : Puzzle<List<string>>
+public class Day3 : Puzzle
 {
-    private const char One = '1';
-    private const char Zero = '0';
+    private readonly List<string> _data = new();
+    private const char One = '1', Zero = '0';
 
-    public Day3(string path) : base(path) { }
+    public Day3(string path) : base(path) => _data = LoadFromFile().ToList();
 
-    protected override List<string> ConvertData(IEnumerable<string> data) => data.ToList();
-
-    protected override int SolvePart1(List<string> data)
+    public override int SolvePart1()
     {
         var gamma = 0; // more common
         var epsilon = 0; // less common
 
-        var totalCount = data.Count;
-        var lengthOfLine = data[0].Length;
+        var totalCount = _data.Count;
+        var lengthOfLine = _data[0].Length;
 
         for (int i = 0; i < lengthOfLine; i++)
         {
             //int increment = (int)Math.Pow(2, i);  // does the same thing, but more human readable
             int increment = 1 << (lengthOfLine - i - 1);  // bitwise is a bit (hehe) faster
 
-            var ones = data.Count(line => line[i] == One);
+            var ones = _data.Count(line => line[i] == One);
 
             if (ones > totalCount / 2) { gamma += increment; }
             else { epsilon += increment; }
@@ -34,12 +32,12 @@ public class Day3 : Puzzle<List<string>>
         return gamma * epsilon;
     }
 
-    protected override int SolvePart2(List<string> data)
+    public override int SolvePart2()
     {
-        var oxygenRating = TakeMore(data, 0); // takes side with more
-        var scrubberRating = TakeFewer(data, 0); // takes side with fewer
+        var oxygenRating = TakeMore(_data, 0); // takes side with more
+        var scrubberRating = TakeFewer(_data, 0); // takes side with fewer
         
-        var lengthOfLine = data[0].Length;
+        var lengthOfLine = _data[0].Length;
 
         for (int i = 1; i < lengthOfLine; i++)
         {

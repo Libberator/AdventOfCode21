@@ -12,8 +12,7 @@ public class Program
         // Adjust your class and path numbers here!
         Puzzle SelectedPuzzle = new Day6(FileReader.FullPath(6));  
         
-        SelectedPuzzle.Init();
-        Console.WriteLine($"Part 1: {SelectedPuzzle.SolvePart1()}");
+        Console.WriteLine($"Part 1: {SelectedPuzzle.SolvePart1(useLong: true)}");
         Console.WriteLine($"Part 2: {SelectedPuzzle.SolvePart2(useLong: true)}"); // optional param: useLong
 
 #if BENCHMARK
@@ -26,7 +25,6 @@ public class Program
     private static void Benchmark(Puzzle puzzle)
     {
         var iterations = 1000;
-        puzzle.Init();
         using (new Watch($"Puzzle 1 x {iterations}")) {
             for (int i = 0; i < iterations; i++) {
                 puzzle.SolvePart1();

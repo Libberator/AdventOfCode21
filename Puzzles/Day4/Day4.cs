@@ -6,33 +6,27 @@ namespace Puzzles;
 
 public class Day4 : Puzzle
 {
-    private readonly List<Bingo> _allBoards = new();
+    private readonly List<int> _numbersToDraw = new();
+    private readonly List<Bingo> __bingoBoards = new();
     public event Action<int> NewNumberCalled = delegate{};
-    private List<int> _numbersToDraw = new();
     private int _totalBoardsRemaining, _lastUnmarkedSum, _lastNumberCalled;
     private bool _firstBingoWasCalled, _lastBingoWasCalled;
 
-    public Day4(string path) : base(path) { }
-
-    public override void Init()
-    {
-        _allBoards.Clear();
-        var boardData = new List<int[]>();
-        foreach (var line in LoadFromFile(_dataPath))
+    public Day4(string path) : base(path) 
+    { 
+        List<int[]> boardData = new();
+        foreach (var line in LoadFromFile())
         {
-            if (line.Contains(','))
-            {
+            if (line.Contains(',')) {
                 _numbersToDraw = line.Split(',').Select(int.Parse).ToList();
             }
-            else if (!string.IsNullOrWhiteSpace(line))
-            {
+            else if (!string.IsNullOrWhiteSpace(line)) {
                 var fiveNums = Array.ConvertAll(line.Split(' ', StringSplitOptions.RemoveEmptyEntries), s => int.Parse(s));
                 boardData.Add(fiveNums);
             }
 
-            if (boardData.Count == 5)
-            {
-                _allBoards.Add(new Bingo(this, boardData));
+            if (boardData.Count == 5) {
+                __bingoBoards.Add(new Bingo(this, boardData));
                 boardData.Clear();
             }
         }
@@ -81,11 +75,10 @@ public class Day4 : Puzzle
     private void ResetBoards()
     {
         _firstBingoWasCalled = _lastBingoWasCalled = false;
-        _totalBoardsRemaining = _allBoards.Count;
+        _totalBoardsRemaining = __bingoBoards.Count;
         NewNumberCalled = delegate {};  // clear all event subscribers
-        foreach (var board in _allBoards)
-        {
-            board.ResetBoard();
+        foreach (var board in __bingoBoards) {
+            board.NewGame();
         }
     }
 }
@@ -110,7 +103,7 @@ public class Bingo
         ShoutBingo = source.SolutionFound;
     }
 
-    public void ResetBoard()
+    public void NewGame()
     {
         _marked = new bool[5,5];
         ListenForNumbers();

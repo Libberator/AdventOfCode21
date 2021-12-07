@@ -6,17 +6,17 @@ namespace PuzzleTests;
 [TestFixture]
 public class Puzzle6Tests
 {
-    private readonly Puzzle _puzzle = new Day6(TestHelpers.TestDataPath(6));
-    private readonly int _expectedResult1 = 5934;
+    private Puzzle _puzzle;
+    private readonly long _expectedResult1 = 5934;
     private readonly long _expectedResult2 = 26984457539;
 
     [OneTimeSetUp]
-    public void SetUp() => _puzzle.Init();
+    public void SetUp() => _puzzle= new Day6(TestHelpers.TestDataPath(6));
 
     [Test]
     public void SolvePart1Test()
     {
-        var result = _puzzle.SolvePart1();
+        var result = _puzzle.SolvePart1(true);
         Assert.AreEqual(_expectedResult1, result);
     }
 

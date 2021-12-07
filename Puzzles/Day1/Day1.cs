@@ -4,20 +4,22 @@ using System.Linq;
 
 namespace Puzzles;
 
-public class Day1 : Puzzle<int[]>
+public class Day1 : Puzzle
 {
-    public Day1(string path) : base(path) { }
+    private readonly int[] _data;
+    public Day1(string path) : base(path) 
+    { 
+        _data = Array.ConvertAll(LoadFromFile().ToArray(), s => int.Parse(s));
+    }
 
-    protected override int[] ConvertData(IEnumerable<string> data) => Array.ConvertAll(data.ToArray(), s => int.Parse(s));
-
-    protected override int SolvePart1(int[] data)
+    public override int SolvePart1()
     {
-        var previousNum = data[0];
+        var previousNum = _data[0];
         var solution = 0;
 
-        for (var i = 1; i < data.Length; i++)
+        for (var i = 1; i < _data.Length; i++)
         {
-            var currentNum = data[i];
+            var currentNum = _data[i];
             if (currentNum > previousNum) solution++;
             previousNum = currentNum;
         }
@@ -25,16 +27,16 @@ public class Day1 : Puzzle<int[]>
         return solution;
     }
 
-    protected override int SolvePart2(int[] data)
+    public override int SolvePart2()
     {
-        int[] window = new int[3] { data[0], data[1], data[2] };
+        int[] window = new int[3] { _data[0], _data[1], _data[2] };
         var previousSum = window.Sum();
 
         var solution = 0;
 
-        for (var i = 3; i < data.Length; i++)
+        for (var i = 3; i < _data.Length; i++)
         {
-            window[i % 3] = data[i];
+            window[i % 3] = _data[i];
             var currentSum = window.Sum();
             if (currentSum > previousSum) solution++;
             previousSum = currentSum;
@@ -42,4 +44,5 @@ public class Day1 : Puzzle<int[]>
 
         return solution;
     }
+
 }

@@ -2,66 +2,61 @@ using System.Collections.Generic;
 
 namespace Puzzles;
 
-public class Day2 : Puzzle<List<(string, int)>>
+public class Day2 : Puzzle
 {
-    private const string Forward = "forward";
-    private const string Down = "down";
-    private const string Up = "up";
+    private readonly List<(string, int)> _data = new();
+    private const string Forward = "forward", Down = "down", Up = "up";
     private readonly char _delimiter = ' ';
 
-    public Day2(string path) : base(path) { }
-
-    protected override List<(string, int)> ConvertData(IEnumerable<string> data)
+    public Day2(string path) : base(path) 
     {
-        var convertedData = new List<(string, int)>();
-        foreach (var s in data)
+        foreach(var line in LoadFromFile())
         {
-            var split = s.Split(_delimiter);
-            convertedData.Add((split[0], int.Parse(split[1])));
+            var split = line.Split(_delimiter);
+            _data.Add((split[0], int.Parse(split[1])));
         }
-        return convertedData;
     }
 
-    protected override int SolvePart1(List<(string, int)> data)
+    public override int SolvePart1()
     {
         var horiz = 0;
         var depth = 0;
 
-        foreach (var order in data)
-            switch (order.Item1)
+        foreach (var movement in _data)
+            switch (movement.Item1)
             {
                 case Forward:
-                    horiz += order.Item2;
+                    horiz += movement.Item2;
                     break;
                 case Down:
-                    depth += order.Item2;
+                    depth += movement.Item2;
                     break;
                 case Up:
-                    depth -= order.Item2;
+                    depth -= movement.Item2;
                     break;
             }
 
         return horiz * depth;
     }
 
-    protected override int SolvePart2(List<(string, int)> data)
+    public override int SolvePart2()
     {
         var horiz = 0;
         var depth = 0;
         var aim = 0;
 
-        foreach (var order in data)
-            switch (order.Item1)
+        foreach (var movement in _data)
+            switch (movement.Item1)
             {
                 case Forward:
-                    horiz += order.Item2;
-                    depth += aim * order.Item2;
+                    horiz += movement.Item2;
+                    depth += aim * movement.Item2;
                     break;
                 case Down:
-                    aim += order.Item2;
+                    aim += movement.Item2;
                     break;
                 case Up:
-                    aim -= order.Item2;
+                    aim -= movement.Item2;
                     break;
             }
 
