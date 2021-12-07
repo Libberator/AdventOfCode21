@@ -9,13 +9,13 @@ public abstract class Puzzle : IInit, ISolver
     public Puzzle(string path) { _dataPath = path; }
     protected virtual IEnumerable<string> LoadFromFile(string path) => FileReader.ReadFrom(path);
     public abstract void Init();
-    public abstract int SolvePart1();
-    public abstract int SolvePart2();
-    public virtual long SolvePart1(bool useLong) => SolvePart1();
-    public virtual long SolvePart2(bool useLong) => SolvePart2();
+    public virtual int SolvePart1() => -1;
+    public virtual int SolvePart2() => -1;
+    public virtual long SolvePart1(bool useLong) => -1;
+    public virtual long SolvePart2(bool useLong) => -1;
 }
 
-public abstract class Puzzle<T> : Puzzle, IConverter<T>, ISolver<T>
+public abstract class Puzzle<T> : Puzzle
 {
     protected T _data;
     public Puzzle(string path) : base(path) { }
@@ -24,9 +24,9 @@ public abstract class Puzzle<T> : Puzzle, IConverter<T>, ISolver<T>
     public override int SolvePart1() => SolvePart1(_data);
     public override int SolvePart2() => SolvePart2(_data);
 
-    public abstract T ConvertData(IEnumerable<string> data);
-    public abstract int SolvePart1(T data);
-    public abstract int SolvePart2(T data);
+    protected abstract T ConvertData(IEnumerable<string> data);
+    protected abstract int SolvePart1(T data);
+    protected abstract int SolvePart2(T data);
 
 }
 
@@ -39,15 +39,4 @@ public interface ISolver
 {
     public int SolvePart1();
     public int SolvePart2();
-}
-
-public interface ISolver<T>
-{
-    public int SolvePart1(T data);
-    public int SolvePart2(T data);
-}
-
-public interface IConverter<T>
-{
-    public T ConvertData(IEnumerable<string> data);
 }

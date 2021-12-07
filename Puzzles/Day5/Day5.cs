@@ -14,7 +14,7 @@ public class Day5 : Puzzle<List<(Vector2 , Vector2)>>
 
     public Day5(string path) : base(path) { }
 
-    public override List<(Vector2, Vector2)> ConvertData(IEnumerable<string> data)
+    protected override List<(Vector2, Vector2)> ConvertData(IEnumerable<string> data)
     {
         var result = new List<(Vector2, Vector2)>();
         foreach (string line in data)
@@ -28,26 +28,28 @@ public class Day5 : Puzzle<List<(Vector2 , Vector2)>>
         return result;
     }
 
-    public override int SolvePart1(List<(Vector2, Vector2)> data)
+    protected override int SolvePart1(List<(Vector2, Vector2)> data)
     {
         var spotsHit = new ConcurrentDictionary<Vector2, bool>();
         Parallel.ForEach(data.Where(pair => pair.Item1.IsLateralTo(pair.Item2)), item =>
         {
             foreach(var point in item.Item1.GetRange(item.Item2))
             {
+                // TODO: look into improving thread/lock concurrency
                 spotsHit[point] = spotsHit.ContainsKey(point);
             }
         });
         return spotsHit.Count(c => c.Value);  // 6710
     }
 
-    public override int SolvePart2(List<(Vector2, Vector2)> data)
+    protected override int SolvePart2(List<(Vector2, Vector2)> data)
     {
         var spotsHit = new ConcurrentDictionary<Vector2, bool>();
         Parallel.ForEach(data, item =>
         {
             foreach(var point in item.Item1.GetRange(item.Item2))
             {
+                // TODO: look into improving thread/lock concurrency
                 spotsHit[point] = spotsHit.ContainsKey(point);
             }
         });

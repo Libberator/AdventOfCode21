@@ -11,7 +11,7 @@ public class Day2 : Puzzle<List<(string, int)>>
 
     public Day2(string path) : base(path) { }
 
-    public override List<(string, int)> ConvertData(IEnumerable<string> data)
+    protected override List<(string, int)> ConvertData(IEnumerable<string> data)
     {
         var convertedData = new List<(string, int)>();
         foreach (var s in data)
@@ -22,7 +22,7 @@ public class Day2 : Puzzle<List<(string, int)>>
         return convertedData;
     }
 
-    public override int SolvePart1(List<(string, int)> data)
+    protected override int SolvePart1(List<(string, int)> data)
     {
         var horiz = 0;
         var depth = 0;
@@ -44,7 +44,7 @@ public class Day2 : Puzzle<List<(string, int)>>
         return horiz * depth;
     }
 
-    public override int SolvePart2(List<(string, int)> data)
+    protected override int SolvePart2(List<(string, int)> data)
     {
         var horiz = 0;
         var depth = 0;

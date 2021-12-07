@@ -8,12 +8,9 @@ public class Day1 : Puzzle<int[]>
 {
     public Day1(string path) : base(path) { }
 
-    public override int[] ConvertData(IEnumerable<string> data)
-    {
-        return Array.ConvertAll(data.ToArray(), s => int.Parse(s));
-    }
+    protected override int[] ConvertData(IEnumerable<string> data) => Array.ConvertAll(data.ToArray(), s => int.Parse(s));
 
-    public override int SolvePart1(int[] data)
+    protected override int SolvePart1(int[] data)
     {
         var previousNum = data[0];
         var solution = 0;
@@ -28,7 +25,7 @@ public class Day1 : Puzzle<int[]>
         return solution;
     }
 
-    public override int SolvePart2(int[] data)
+    protected override int SolvePart2(int[] data)
     {
         int[] window = new int[3] { data[0], data[1], data[2] };
         var previousSum = window.Sum();

@@ -8,7 +8,7 @@ namespace PuzzleTests;
 public class AllTests
 {
     // TODO: This is a work in progress to automate tests in the future
-    public void BaseTestMethod(Puzzle puzzle, int dayNumber, int? expected1, int? expected2 = null)
+    public static void BaseTestMethod(Puzzle puzzle, int dayNumber, int? expected1, int? expected2 = null)
     {
         //var data = TestHelpers.ReadFrom(dayNumber);
         puzzle.Init();

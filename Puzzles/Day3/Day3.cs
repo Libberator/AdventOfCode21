@@ -10,9 +10,9 @@ public class Day3 : Puzzle<List<string>>
 
     public Day3(string path) : base(path) { }
 
-    public override List<string> ConvertData(IEnumerable<string> data) => data.ToList();
+    protected override List<string> ConvertData(IEnumerable<string> data) => data.ToList();
 
-    public override int SolvePart1(List<string> data)
+    protected override int SolvePart1(List<string> data)
     {
         var gamma = 0; // more common
         var epsilon = 0; // less common
@@ -34,7 +34,7 @@ public class Day3 : Puzzle<List<string>>
         return gamma * epsilon;
     }
 
-    public override int SolvePart2(List<string> data)
+    protected override int SolvePart2(List<string> data)
     {
         var oxygenRating = TakeMore(data, 0); // takes side with more
         var scrubberRating = TakeFewer(data, 0); // takes side with fewer
