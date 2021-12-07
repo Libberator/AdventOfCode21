@@ -6,12 +6,9 @@ namespace PuzzleTests;
 [TestFixture]
 public class Puzzle4Tests
 {
-    private Puzzle _puzzle;
+    private readonly Puzzle _puzzle = new Day4(TestHelpers.TestDataPath(4));
     private readonly int _expectedResult1 = 4512;
     private readonly int _expectedResult2 = 1924;
-
-    [OneTimeSetUp]
-    public void SetUp() => _puzzle = new Day4(TestHelpers.TestDataPath(4));
 
     [Test]
     public void SolvePart1Test()

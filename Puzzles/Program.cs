@@ -1,4 +1,4 @@
-﻿//#define BENCHMARK
+﻿#define BENCHMARK
 
 using System;
 using Utilities;
