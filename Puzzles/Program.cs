@@ -10,7 +10,7 @@ public class Program
     public static void Main()
     {
         // Adjust your class and path numbers here!
-        Puzzle SelectedPuzzle = new Day8(FileReader.FullPath(8));  
+        Puzzle SelectedPuzzle = new Day9(FileReader.FullPath(9));  
         
         Console.WriteLine($"Part 1: {SelectedPuzzle.SolvePart1()}");
         Console.WriteLine($"Part 2: {SelectedPuzzle.SolvePart2()}");

@@ -4,11 +4,11 @@ using Puzzles;
 namespace PuzzleTests;
 
 [TestFixture]
-public class Puzzle8Tests
+public class Puzzle9Tests
 {
-    private readonly Puzzle _puzzle = new Day8(TestHelpers.TestDataPath(8));
-    private readonly long _expectedResult1 = 26;
-    private readonly long _expectedResult2 = 61229;
+    private readonly Puzzle _puzzle = new Day9(TestHelpers.TestDataPath(9));
+    private readonly long _expectedResult1 = 15;
+    private readonly long _expectedResult2 = 1134;
 
     [Test]
     public void SolvePart1Test()
