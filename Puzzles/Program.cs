@@ -1,4 +1,4 @@
-﻿#define BENCHMARK
+﻿//#define BENCHMARK
 
 using System;
 using Utilities;
@@ -10,7 +10,7 @@ public class Program
     public static void Main()
     {
         // Adjust your class and path numbers here!
-        Puzzle SelectedPuzzle = new Day9(FileReader.FullPath(9));  
+        var SelectedPuzzle = new Day10(FileReader.FullPath(10));  
         
         Console.WriteLine($"Part 1: {SelectedPuzzle.SolvePart1()}");
         Console.WriteLine($"Part 2: {SelectedPuzzle.SolvePart2()}");

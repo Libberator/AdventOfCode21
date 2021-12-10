@@ -17,6 +17,7 @@ public class Day9 : Puzzle
         _cols = _data[0].Length;
     }
 
+#region Part 1
     public override int SolvePart1()
     {
         int sum = 0;
@@ -33,10 +34,28 @@ public class Day9 : Puzzle
         return sum;
     }
 
+    private bool IsALowPoint(int row, int col, char num){
+        if(IsWithinBounds(row, col + 1)) { // right
+            if(_data[row][col + 1] <= num) return false;
+        }
+        if(IsWithinBounds(row, col - 1)) { // left
+            if(_data[row][col - 1] <= num) return false;
+        }
+        if(IsWithinBounds(row + 1, col)) { // down
+            if(_data[row + 1][col] <= num) return false;
+        }
+        if(IsWithinBounds(row - 1, col)) { // up
+            if(_data[row - 1][col] <= num) return false;
+        }
+        return true;
+    }
+#endregion
+
+#region Part 2
     public override int SolvePart2()
     {
         bool[,] traversedPoints = new bool[_rows,_cols];
-        List<int> basinSizes = new(); // TODO: implement better way to store top3 to save on memory
+        List<int> basinSizes = new();
         for(int i = 0; i < _rows; i++)
         {
             for(int j = 0; j < _cols; j++)
@@ -49,22 +68,6 @@ public class Day9 : Puzzle
         }
         var topThree = basinSizes.OrderByDescending(v => v).Take(3).ToArray();
         return topThree[0] * topThree[1] * topThree[2];
-    }
-
-    private bool IsALowPoint(int row, int col, char num){
-        if(col < _cols - 1) { // check right
-            if(_data[row][col + 1] <= num) return false;
-        }
-        if(col > 0) { // left
-            if(_data[row][col - 1] <= num) return false;
-        }
-        if(row < _rows - 1) { // down
-            if(_data[row + 1][col] <= num) return false;
-        }
-        if(row > 0) { // up
-            if(_data[row - 1][col] <= num) return false;
-        }
-        return true;
     }
 
     private int Recurse(int row, int col, int sum, bool[,] traversed)
@@ -80,4 +83,5 @@ public class Day9 : Puzzle
             Recurse(row + 1, col, sum, traversed) + // down
             Recurse(row - 1, col, sum, traversed); // up
     }
+#endregion
 }
