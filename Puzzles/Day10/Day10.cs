@@ -7,14 +7,14 @@ namespace Puzzles;
 public class Day10 : Puzzle<long>
 {
     private readonly string[] _data;
-    private readonly char[] OpeningBraces = new char[4]{'(', '[', '{', '<'};
-    private readonly Dictionary<char, (char, int)> PairPointMappings = new(){
+    private readonly char[] OpeningBraces = new char[4] { '(', '[', '{', '<' };
+    private readonly Dictionary<char, (char, int)> PairPointMappings = new() {
         [')'] = ('(' ,3),
         [']'] = ('[', 57),
         ['}'] = ('{', 1197),
         ['>'] = ('<', 25137)
     };
-    private readonly Dictionary<char,  long> AutoCompleteMappings = new(){
+    private readonly Dictionary<char,  long> AutoCompleteMappings = new() {
         ['('] = 1,
         ['['] = 2,
         ['{'] = 3,
@@ -29,11 +29,9 @@ public class Day10 : Puzzle<long>
         Stack<char> lastOpeningBrace = new();
         foreach (var line in _data)
         {
-            //bool errorFound = false;
             lastOpeningBrace.Clear();
             foreach (char brace in line)
             {
-                //if(errorFound) continue;
                 if (OpeningBraces.Contains(brace))
                 {
                     lastOpeningBrace.Push(brace);
@@ -45,7 +43,6 @@ public class Day10 : Puzzle<long>
                 else
                 {
                     sum += PairPointMappings[brace].Item2;
-                    //errorFound = true;
                     break;
                 }
             }
@@ -63,7 +60,6 @@ public class Day10 : Puzzle<long>
             lastOpeningBrace.Clear();
             foreach (char brace in line)
             {
-                if(errorFound) continue;
                 if (OpeningBraces.Contains(brace))
                 {
                     lastOpeningBrace.Push(brace);
@@ -72,8 +68,10 @@ public class Day10 : Puzzle<long>
                 {
                     lastOpeningBrace.Pop();
                 }
-                else{
+                else
+                {
                     errorFound = true;
+                    break;
                 }
             }
             if(errorFound) continue;

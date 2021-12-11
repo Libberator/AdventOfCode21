@@ -10,7 +10,7 @@ public class Program
     public static void Main()
     {
         // Adjust your class and path numbers here!
-        var SelectedPuzzle = new Day10(FileReader.FullPath(10));  
+        var SelectedPuzzle = new Day11(FileReader.FullPath(11));  
         
         Console.WriteLine($"Part 1: {SelectedPuzzle.SolvePart1()}");
         Console.WriteLine($"Part 2: {SelectedPuzzle.SolvePart2()}");
@@ -21,7 +21,7 @@ public class Program
         Console.ReadLine(); // Wait before closing console
     }
 
-    private static void Benchmark(Puzzle puzzle)
+    private static void Benchmark(ISolver<int> puzzle)  // change to <int>/<long> as needed
     {
         var iterations = 1000;
         using (new Watch($"Puzzle 1 x {iterations}")) {
