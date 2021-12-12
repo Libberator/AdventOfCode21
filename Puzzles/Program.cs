@@ -7,10 +7,9 @@ namespace Puzzles;
 
 public class Program
 {
-    public static void Main()
-    {
+    public static void Main() {
         // Adjust your class and path numbers here!
-        var SelectedPuzzle = new Day11(FileReader.FullPath(11));  
+        var SelectedPuzzle = new Day12(FileReader.FullPath(12));  
         
         Console.WriteLine($"Part 1: {SelectedPuzzle.SolvePart1()}");
         Console.WriteLine($"Part 2: {SelectedPuzzle.SolvePart2()}");
