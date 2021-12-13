@@ -16,7 +16,6 @@ public abstract class Puzzle<T> : ISolver<T> where T : struct
 // default int return type
 public abstract class Puzzle : Puzzle<int> { protected Puzzle(string path) : base(path) { } }
 
-
 public interface ISolver<T>
 {
     public T SolvePart1();

@@ -16,6 +16,15 @@ public static class Utils
         return dict.TryGetValue(key, out V? value) ? value : defVal;
     }
 
+    public static IEnumerable<T> RemoveDuplicates<T>(this IEnumerable<T> source)
+    {
+        List<T> uniques = new();
+        foreach (T item in source)
+        {
+            if (!uniques.Contains(item)) uniques.Add(item);
+        }
+        return uniques;
+    }
 }
 
 public sealed class Watch : IDisposable {
