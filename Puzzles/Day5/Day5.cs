@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Numerics;
 using System.Collections.Concurrent;
+using Utilities;
 
 namespace Puzzles;
 
@@ -52,20 +53,6 @@ public class Day5 : Puzzle
     }
 }
 
-public static class Vector2Extension
-{
-    public static bool IsLateralTo(this Vector2 a, Vector2 b) => a.X == b.X || a.Y == b.Y;
-
-    public static IEnumerable<Vector2> GetRange(this Vector2 from, Vector2 to)
-    {
-        do {
-            yield return from;
-            from.X += from.X < to.X ? 1 : from.X > to.X ? -1 : 0;
-            from.Y += from.Y < to.Y ? 1 : from.Y > to.Y ? -1 : 0;
-        } while (from != to);
-        yield return to;
-    }
-}
 
 /*  Alternative method with Lerp (not as fast for obvious reasons)
 public static IEnumerable<Vector2> GetRange(this Vector2 from, Vector2 to)
