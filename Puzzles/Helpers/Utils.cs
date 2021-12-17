@@ -6,6 +6,16 @@ namespace Utilities;
 
 public static class Utils
 {
+    public static void AddToOrCreate<K>(this IDictionary<K, long> dict, K key, long val)
+    {
+        if(dict.ContainsKey(key)) {
+            dict[key] += val;
+        }
+        else{
+            dict.Add(key, val);
+        }
+    }
+
     public static int[] ConvertToInts(this string[] data)
     {
         return Array.ConvertAll(data, s => int.Parse(s));
@@ -24,6 +34,20 @@ public static class Utils
             if (!uniques.Contains(item)) uniques.Add(item);
         }
         return uniques;
+    }
+
+    public static int BinaryToInt(string s) => Convert.ToInt32(s, 2);
+    public static long BinaryToLong(string s) => Convert.ToInt64(s, 2);
+
+
+    public static string Slice(this string source, int start, int end)
+    {
+        if (end < 0)  // Keep this for negative end support
+        {
+            end = source.Length + end;
+        }
+        int len = end - start;
+        return source.Substring(start, len);
     }
 }
 

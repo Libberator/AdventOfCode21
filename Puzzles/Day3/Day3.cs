@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Utilities;
 
 namespace Puzzles;
 
@@ -52,7 +53,7 @@ public class Day3 : Puzzle
             }
         }
 
-        return BinaryStringToInt(oxygenRating.First()) * BinaryStringToInt(scrubberRating.First());
+        return Utils.BinaryToInt(oxygenRating.First()) * Utils.BinaryToInt(scrubberRating.First());
     }
 
 
@@ -81,5 +82,5 @@ public class Day3 : Puzzle
         return count;
     }
 
-    private static int BinaryStringToInt(string s) => System.Convert.ToInt32(s, 2);
+    
 }
