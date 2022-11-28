@@ -5,7 +5,7 @@ namespace Utilities;
 
 public static class FileReader
 {
-    public static string FullPath(int number) => $"./Puzzles/Day{number}/input.txt";
+    public static string FullPath(int number) => $"../../../Day{(number < 10 ? "0" + number : number)}/input.txt";
 
     public static string[] GrabAllLines(string path) => File.ReadAllLines(path);
 
