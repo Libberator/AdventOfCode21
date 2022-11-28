@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Utilities;
@@ -49,7 +47,6 @@ public class Day17 : Puzzle
 
     private bool TestTrajectory(Vector2 velocity)
     {
-        (int x, int y) vel = ((int)velocity.X, (int)velocity.Y);
         Vector2 newVelocity = new(velocity.X, velocity.Y);
         Vector2 position = new(0,0);
         int step = 0;
@@ -57,8 +54,7 @@ public class Day17 : Puzzle
             step++;
             position += newVelocity;
             ApplyPhysics(ref newVelocity);
-            if(_bounds.IsWithinBounds((int)position.X, (int)position.Y)){
-                //Console.WriteLine($"Velocity of {vel.x}, {vel.y} passed in {step} steps");
+            if(_bounds.IsWithinBounds(position)){
                 return true;
             }
         }

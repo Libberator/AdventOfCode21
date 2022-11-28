@@ -11,7 +11,7 @@ namespace Puzzles;
 public class Day14 : Puzzle<long>
 {
     private readonly Dictionary<string, char> _insertionPairs = new();
-    private readonly string _template;
+    private readonly string _template = "";
     private const string Delimiter = "->";
 
     public Day14(string path) : base(path)

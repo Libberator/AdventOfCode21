@@ -43,10 +43,10 @@ public class Day13
             FoldAt(fold.Item1, fold.Item2, _data);
         }
 
-        var minX = _data.MinBy(p => p.X).X;
-        var maxX = _data.MaxBy(p => p.X).X;
-        var minY = _data.MinBy(p => p.Y).Y;
-        var maxY = _data.MaxBy(p => p.Y).Y;
+        var minX = _data.Min(p => p.X);
+        var maxX = _data.Max(p => p.X);
+        var minY = _data.Min(p => p.Y);
+        var maxY = _data.Max(p => p.Y);
 
         var sb = new StringBuilder();
         for (int row = minY; row <= maxY; row++) {

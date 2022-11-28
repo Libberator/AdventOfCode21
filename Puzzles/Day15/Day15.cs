@@ -57,8 +57,8 @@ public class Day15 : Puzzle
     {
         CreateNodes();
         InitializeNodes();
-
-        var path = FindPath(_nodes.First(n => n.X == 0 && n.Y == 0), _nodes.MaxBy(n => n.X + n.Y)); 
+        var endIndex = _data.Length - 1;
+        var path = FindPath(_nodes.First(n => n.X == 0 && n.Y == 0), _nodes.First(n => n.X == endIndex && n.Y == endIndex)); 
         return path.Sum(n => n.Value);  // 714
     }
 
@@ -66,8 +66,8 @@ public class Day15 : Puzzle
     {
         ExtendNodeGrid();
         InitializeNodes();
-
-        var path = FindPath(_nodes.First(n => n.X == 0 && n.Y == 0), _nodes.MaxBy(n => n.X + n.Y));
+        var endIndex = 5 * _data.Length - 1;
+        var path = FindPath(_nodes.First(n => n.X == 0 && n.Y == 0), _nodes.First(n => n.X == endIndex && n.Y == endIndex));
         return path.Sum(n => n.Value);  // 2948
     }
 
@@ -112,13 +112,13 @@ public class Day15 : Puzzle
                 }
             }
         }
-        return null;
+        return new List<Node>();
     }
 
     public class Node
     {
-        public Node Connection { get; private set; }
-        public List<Node> Neighbors { get; private set; }
+        public Node? Connection { get; private set; }
+        public List<Node>? Neighbors { get; private set; }
         public int Value { get; private set; }  // cost to go to this node
         public int X, Y;
         public int G { get; private set; } // G = total cost from start (all prev Values + this Value),
