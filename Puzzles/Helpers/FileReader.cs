@@ -1,11 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Utilities;
 
 public static class FileReader
 {
-    public static string FullPath(int number) => $"../../../Day{(number < 10 ? "0" + number : number)}/input.txt";
+    public static string FullPath(int number)
+    {
+        var folder = $"Day{number:D2}";
+        var file = $"input.txt";
+        return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, folder, file);
+    }
 
     public static string[] GrabAllLines(string path) => File.ReadAllLines(path);
 
